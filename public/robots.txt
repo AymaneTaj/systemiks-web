@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /client-dashboard.php
+Disallow: /contact-submit.php
+Allow: /
+
+Sitemap: https://systemiks.ca/sitemap.xml

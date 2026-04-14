@@ -1,0 +1,7 @@
+Options -Indexes
+ErrorDocument 404 /404.php
+
+<FilesMatch "\.(sql|sqlite|log|md)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

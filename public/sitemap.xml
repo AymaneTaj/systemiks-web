@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://systemiks.ca/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://systemiks.ca/about.php</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://systemiks.ca/services.php</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://systemiks.ca/web-design-development.php</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://systemiks.ca/branding.php</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://systemiks.ca/seo-marketing.php</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://systemiks.ca/advertising.php</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://systemiks.ca/work.php</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://systemiks.ca/contact.php</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+</urlset>

@@ -1,0 +1,25 @@
+# Data — never commit (SQLite DB, user uploads)
+data/
+uploads/
+
+# Cursor / Claude internal files
+.cursor/
+CURSOR_*.md
+CURSOR_*.txt
+
+# Environment / secrets
+.env
+config/config.local.php
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs
+*.log
+error_log
+
+# Node (if ever used)
+node_modules/

@@ -1,0 +1,37 @@
+name: Deploy to systemiks.tech
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 162.254.39.85
+          port: 21098
+          username: systyvfq
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            set -e
+            DEPLOY_PATH="$HOME/systemiks.tech"
+
+            if [ ! -d "$DEPLOY_PATH/.git" ]; then
+              git clone https://github.com/AymaneTaj/systemiks-web.git "$DEPLOY_PATH"
+            else
+              cd "$DEPLOY_PATH"
+              git pull origin main
+            fi
+
+            # Protect server-side data — never overwrite
+            mkdir -p "$DEPLOY_PATH/data"
+            mkdir -p "$DEPLOY_PATH/public/uploads"
+
+            # Ensure SQLite DB is writable by PHP
+            touch "$DEPLOY_PATH/data/systemiks.sqlite"
+            chmod 664 "$DEPLOY_PATH/data/systemiks.sqlite"
+
+            echo "Deploy complete: $(date)"

@@ -20,7 +20,7 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
-      - name: Package site (exclude data, git, cursors)
+      - name: Package site
         run: |
           tar czf /tmp/deploy.tar.gz \
             --exclude='.git' \
@@ -30,9 +30,11 @@ jobs:
             --exclude='.cursor' \
             --exclude='ofseek-homepage.html' \
             --exclude='frontend/node_modules' \
+            --exclude='frontend/src' \
+            --exclude='docs' \
             .
 
-      - name: Upload archive to server
+      - name: Upload to server
         run: |
           sshpass -p "${{ secrets.SSH_PASSWORD }}" scp \
             -P 21098 \
@@ -40,7 +42,7 @@ jobs:
             /tmp/deploy.tar.gz \
             systyvfq@162.254.39.85:~/deploy_systemiks.tar.gz
 
-      - name: Extract and finalise on server
+      - name: Deploy on server
         run: |
           sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh \
             -p 21098 \
@@ -48,20 +50,25 @@ jobs:
             systyvfq@162.254.39.85 << 'DEPLOY'
           set -e
 
-          DEPLOY_PATH="$HOME/systemiks.tech"
+          # Extract config/ → ~/config/ (above web root, private)
+          tar xzf ~/deploy_systemiks.tar.gz -C "$HOME" \
+            --strip-components=1 \
+            --wildcards './config/*'
 
-          # Create deploy dir if first time
-          mkdir -p "$DEPLOY_PATH"
+          # Extract public/* → ~/public_html/ (the web root for systemiks.tech)
+          tar xzf ~/deploy_systemiks.tar.gz -C "$HOME/public_html" \
+            --strip-components=2 \
+            --wildcards './public/*'
 
-          # Extract — never overwrites data/ (not in archive)
-          tar xzf ~/deploy_systemiks.tar.gz -C "$DEPLOY_PATH"
           rm ~/deploy_systemiks.tar.gz
 
-          # Ensure data dir + SQLite exist and are writable
-          mkdir -p "$DEPLOY_PATH/data"
-          touch "$DEPLOY_PATH/data/systemiks.sqlite"
-          chmod 664 "$DEPLOY_PATH/data/systemiks.sqlite"
-          mkdir -p "$DEPLOY_PATH/public/uploads"
+          # Ensure data dir + SQLite exist at ~/data/ (private, above web root)
+          mkdir -p "$HOME/data"
+          touch "$HOME/data/systemiks.sqlite"
+          chmod 664 "$HOME/data/systemiks.sqlite"
+
+          # Remove old systemiks.tech deploy folder if it exists
+          rm -rf "$HOME/systemiks.tech" 2>/dev/null || true
 
           echo "Deploy complete: $(date)"
           DEPLOY

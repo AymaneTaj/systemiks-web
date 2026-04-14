@@ -31,11 +31,9 @@ const defaultWork = {
   title: "E-commerce & brand redesign",
   excerpt:
     "Full website redesign, visual identity, and performance campaigns for measurable growth.",
-  image:
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+  image: "",
   client: {
     name: "Systemiks",
-    avatar: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&q=80",
   },
   service: "Web + Branding",
   year: "2025",
@@ -60,6 +58,12 @@ export function GlassWorkCard({
       ? String(image).trim()
       : undefined
   const useGradient = Boolean(thumbGradient && !resolvedImage)
+  const photoSrc =
+    resolvedImage !== undefined && resolvedImage !== ""
+      ? resolvedImage
+      : defaultWork.image && String(defaultWork.image).trim() !== ""
+        ? String(defaultWork.image).trim()
+        : undefined
 
   return (
     <motion.div
@@ -81,12 +85,19 @@ export function GlassWorkCard({
                 {thumbMonogram(title ?? "")}
               </span>
             </motion.div>
-          ) : (
+          ) : photoSrc ? (
             <motion.img
-              src={resolvedImage !== undefined ? resolvedImage : defaultWork.image}
+              src={photoSrc}
               alt={title}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
+          ) : (
+            <div
+              aria-hidden
+              className="flex h-full w-full items-center justify-center bg-muted transition-transform duration-500 group-hover:scale-105"
+            >
+              <Briefcase className="h-12 w-12 text-muted-foreground/40" />
+            </div>
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
 

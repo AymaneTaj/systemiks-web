@@ -4,9 +4,15 @@ import { cn } from "@/lib/utils"
 
 export interface WorkItem {
   title: string
-  tag: string
-  img: string
-  service: string
+  category?: string
+  result?: string
+  tags?: string[]
+  color?: string
+  image?: string | null
+  /** Legacy fields from older `__WORK_DATA__` payloads */
+  tag?: string
+  img?: string
+  service?: string
   excerpt?: string
   href?: string
   client?: { name: string; avatar?: string }
@@ -27,15 +33,35 @@ const FILTERS = [
   { id: "ppc", label: "PPC" },
 ] as const
 
+type WorkFilterId = (typeof FILTERS)[number]["id"]
+
+function projectMatchesFilter(p: WorkItem, filter: WorkFilterId): boolean {
+  const rawTags = p.tags?.length ? p.tags : p.tag ? [p.tag] : []
+  const tags = rawTags.map((t) => t.toLowerCase())
+  const cat = (p.category ?? "").toLowerCase()
+  switch (filter) {
+    case "all":
+      return true
+    case "web":
+      return (
+        tags.some((t) => t.includes("web") || t.includes("e-commerce") || t.includes("ecommerce")) ||
+        cat.includes("e-commerce")
+      )
+    case "seo":
+      return tags.some((t) => t.includes("seo")) || cat.includes("seo")
+    case "branding":
+      return tags.some((t) => t.includes("branding")) || cat.includes("branding")
+    case "ppc":
+      return tags.some((t) => t.includes("ads")) || cat.includes("ads")
+  }
+}
+
 export function WorkCardsGrid() {
   const raw = typeof window !== "undefined" ? window.__WORK_DATA__ : undefined
   const items: WorkItem[] = Array.isArray(raw) ? raw : []
-  const [filter, setFilter] = useState<string>("all")
+  const [filter, setFilter] = useState<WorkFilterId>("all")
 
-  const filtered =
-    filter === "all"
-      ? items
-      : items.filter((p) => p.service.toLowerCase() === filter)
+  const filtered = items.filter((p) => projectMatchesFilter(p, filter))
 
   return (
     <div className="work-cards-grid-wrap">
@@ -61,19 +87,25 @@ export function WorkCardsGrid() {
         </div>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((p, i) => (
-          <GlassWorkCard
-            key={`${p.title}-${i}`}
-            title={p.title}
-            excerpt={p.excerpt}
-            image={p.img}
-            tags={[p.tag]}
-            service={p.tag}
-            year={p.year}
-            href={p.href ?? "/work.php"}
-            client={p.client}
-          />
-        ))}
+        {filtered.map((p, i) => {
+          const displayTags = p.tags?.length ? p.tags : p.tag ? [p.tag] : []
+          const excerpt = p.result ?? p.excerpt
+          const imageSrc = p.img ?? p.image ?? undefined
+          return (
+            <GlassWorkCard
+              key={`${p.title}-${i}`}
+              title={p.title}
+              excerpt={excerpt}
+              image={imageSrc}
+              thumbGradient={p.color}
+              tags={displayTags}
+              service={p.category ?? p.tag}
+              year={p.year}
+              href={p.href ?? "/work.php"}
+              client={p.client}
+            />
+          )
+        })}
       </div>
       {filtered.length === 0 && (
         <p className="py-8 text-center text-muted-foreground">

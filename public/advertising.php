@@ -94,10 +94,10 @@ $pageDesc  = 'PPC campaigns that convert. Google Ads, Meta, and TikTok advertisi
           <h2 class="section-intro__heading">Numbers you can count on</h2>
         </div>
         <div class="stats-grid">
-          <div class="stat-block"><span class="stat-block__value">4.2x</span><span class="stat-block__label">Avg ROAS our campaigns achieve</span></div>
-          <div class="stat-block"><span class="stat-block__value">90 days</span><span class="stat-block__label">Typical optimization window</span></div>
-          <div class="stat-block"><span class="stat-block__value">Real-time</span><span class="stat-block__label">Dashboard access included</span></div>
-          <div class="stat-block"><span class="stat-block__value">0</span><span class="stat-block__label">Black box — full transparency</span></div>
+          <div class="stat-block"><span class="stat-block__value">4.2x</span><span class="stat-block__label">Average ROAS achieved</span></div>
+          <div class="stat-block"><span class="stat-block__value">-30%</span><span class="stat-block__label">Avg. cost-per-lead reduction</span></div>
+          <div class="stat-block"><span class="stat-block__value">48h</span><span class="stat-block__label">Campaign live turnaround</span></div>
+          <div class="stat-block"><span class="stat-block__value">100%</span><span class="stat-block__label">Conversion tracking on all campaigns</span></div>
         </div>
       </div>
     </section>
@@ -106,17 +106,8 @@ $pageDesc  = 'PPC campaigns that convert. Google Ads, Meta, and TikTok advertisi
       <div class="section__inner">
         <span class="section-intro__eyebrow">Our portfolio</span>
         <h2 class="section-intro__heading" style="max-width:600px; margin: 1rem auto;">See real results for real brands</h2>
-        <p style="color: var(--text-muted); max-width:480px; margin: 0 auto 2rem;">Real projects, real metrics. CB Legal, BabAtlas Car, Zoon Pet, and more.</p>
+        <p style="color: var(--text-muted); max-width:480px; margin: 0 auto 2rem;">4.2x ROAS on paid search, +60% qualified leads for TaxiVan-Medic — see how ad spend becomes measurable growth.</p>
         <a href="/work.php" class="btn btn--primary">View our work →</a>
-      </div>
-    </section>
-
-    <section class="section--white reveal-on-scroll" style="padding: 3rem 1.5rem; background: var(--light-1);">
-      <div class="section__inner" style="max-width: 700px; text-align:center;">
-        <span class="section-intro__eyebrow">Transparent pricing</span>
-        <h3 style="font-size: var(--text-2xl); margin: 0.75rem 0;">Custom scoped — no generic packages</h3>
-        <p style="color: var(--text-muted); margin: 0 0 1.5rem;">Every project is scoped to your goals. We quote after a discovery call — no guessing, no hidden costs. Book a call and get a clear proposal within 48 hours.</p>
-        <a href="/contact.php" class="btn btn--gold">Get a quote →</a>
       </div>
     </section>
 

@@ -106,17 +106,8 @@ $pageDesc  = 'Brand strategy and visual identity for businesses in Laval and Mon
       <div class="section__inner">
         <span class="section-intro__eyebrow">Our portfolio</span>
         <h2 class="section-intro__heading" style="max-width:600px; margin: 1rem auto;">See real results for real brands</h2>
-        <p style="color: var(--text-muted); max-width:480px; margin: 0 auto 2rem;">Real projects, real metrics. CB Legal, BabAtlas Car, Zoon Pet, and more.</p>
+        <p style="color: var(--text-muted); max-width:480px; margin: 0 auto 2rem;">Identity systems for Zoon Pet, Ms-Production, Cool Cook and more — brands that look sharp and communicate clearly from day one.</p>
         <a href="/work.php" class="btn btn--primary">View our work →</a>
-      </div>
-    </section>
-
-    <section class="section--white reveal-on-scroll" style="padding: 3rem 1.5rem; background: var(--light-1);">
-      <div class="section__inner" style="max-width: 700px; text-align:center;">
-        <span class="section-intro__eyebrow">Transparent pricing</span>
-        <h3 style="font-size: var(--text-2xl); margin: 0.75rem 0;">Custom scoped — no generic packages</h3>
-        <p style="color: var(--text-muted); margin: 0 0 1.5rem;">Every project is scoped to your goals. We quote after a discovery call — no guessing, no hidden costs. Book a call and get a clear proposal within 48 hours.</p>
-        <a href="/contact.php" class="btn btn--gold">Get a quote →</a>
       </div>
     </section>
 

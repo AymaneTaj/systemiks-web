@@ -89,8 +89,6 @@ $pageDesc  = 'Full-service digital agency: custom web design, brand identity, SE
       </div>
     </section>
 
-    <?php require_once __DIR__ . '/includes/work-comparison.php'; ?>
-
     <section class="cta-bar">
       <div class="cta-bar-text">
         <h2>One team. Four services. One goal: your growth.</h2>

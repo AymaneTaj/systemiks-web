@@ -103,7 +103,7 @@ $error = $errRaw !== '' ? array_values(array_filter(explode(',', $errRaw), stati
           <h3 class="contact-form-card__title">Send a message</h3>
           <p class="contact-form-card__sub">Or <a href="#calendar">book a time directly</a> below.</p>
           <?php if (!empty($error)): ?>
-          <div style="background: #fef2f2; color: #991b1b; padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.9rem;">
+          <div class="form-error-message">
             Please fill in all required fields and try again.
           </div>
           <?php endif; ?>
@@ -143,7 +143,7 @@ $error = $errRaw !== '' ? array_values(array_filter(explode(',', $errRaw), stati
               <label for="cm" class="form-label">Message <span style="color:var(--blue)">*</span></label>
               <textarea id="cm" name="message" rows="5" class="form-input form-input--textarea<?= in_array('message', $error, true) ? ' form-input--error' : '' ?>" placeholder="Tell us about your project, goals, or timeline..." required></textarea>
             </div>
-            <input type="text" name="website" value="" style="display:none!important;visibility:hidden;" tabindex="-1" autocomplete="off">
+            <input type="text" name="website" value="" class="honeypot-field" tabindex="-1" autocomplete="off">
             <button type="submit" class="btn btn--primary btn--full">Send message →</button>
           </form>
         </div>

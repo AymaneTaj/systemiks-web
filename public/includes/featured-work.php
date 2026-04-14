@@ -6,21 +6,21 @@ $featured = [
     [
         'title' => 'CB Legal',
         'tag' => 'Web + Branding',
-        'img' => 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80',
+        'color' => 'linear-gradient(135deg, #1a1a2e, #0f3460)',
         'url' => '/work.php',
         'result' => '+140% organic traffic',
     ],
     [
         'title' => 'BabAtlas Car',
         'tag' => 'Web + SEO',
-        'img' => 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80',
+        'color' => 'linear-gradient(135deg, #0d0d0d, #2d2d2d)',
         'url' => '/work.php',
         'result' => '3x conversion rate',
     ],
     [
         'title' => 'Cool Cook',
         'tag' => 'E-commerce + Branding',
-        'img' => 'https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80',
+        'color' => 'linear-gradient(135deg, #7f1d1d, #b91c1c)',
         'url' => '/work.php',
         'result' => '+220% online revenue',
     ],
@@ -35,7 +35,13 @@ $featured = [
             <span class="featured-work-tag"><?= htmlspecialchars($item['tag']) ?></span>
             <span class="featured-work-result"><?= htmlspecialchars($item['result']) ?></span>
             <div class="featured-work-img-wrap">
-                <img src="<?= htmlspecialchars($item['img']) ?>" alt="" width="600" height="380" loading="lazy" class="featured-work-img">
+                <div
+                    class="featured-work-thumb"
+                    style="background: <?= htmlspecialchars($item['color'], ENT_QUOTES, 'UTF-8') ?>;"
+                    aria-hidden="true"
+                >
+                    <span style="color: rgba(255,255,255,0.15); font-size: 2.5rem; font-weight: 900; letter-spacing: -0.05em;"><?= htmlspecialchars(strtoupper(substr($item['title'], 0, 2)), ENT_QUOTES, 'UTF-8') ?></span>
+                </div>
             </div>
             <h3 class="featured-work-card-title"><?= htmlspecialchars($item['title']) ?></h3>
         </a>

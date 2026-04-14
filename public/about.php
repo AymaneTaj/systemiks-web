@@ -73,9 +73,9 @@ $headerTransparent = false;
         <h2 class="about-heading">Based in Laval — serving all of Quebec</h2>
         <p class="about-body">Our team is based at 271 Boul des Prairies, Laval, QC. We work with businesses in Montreal, Laval, Quebec City, and across Canada. Most client relationships are remote-friendly — we show up in person when it counts.</p>
         <div style="margin-top: 1rem;">
-          <a href="tel:+15147461644" style="color: var(--blue); font-weight: 600; text-decoration: none;">+1 514-746-1644</a>
+          <a href="tel:+15147461644" class="contact-link">+1 514-746-1644</a>
           <span style="margin: 0 0.75rem; color: var(--text-muted);">·</span>
-          <a href="mailto:info@systemiks.ca" style="color: var(--blue); font-weight: 600; text-decoration: none;">info@systemiks.ca</a>
+          <a href="mailto:info@systemiks.ca" class="contact-link">info@systemiks.ca</a>
         </div>
       </section>
 

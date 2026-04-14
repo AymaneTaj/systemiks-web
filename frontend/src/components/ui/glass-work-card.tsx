@@ -5,10 +5,17 @@ import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { ArrowRight, Briefcase } from "lucide-react"
 
+function thumbMonogram(title: string): string {
+  const t = title.trim()
+  return t.slice(0, 2).toUpperCase()
+}
+
 export interface GlassWorkCardProps {
   title?: string
   excerpt?: string
-  image?: string
+  image?: string | null
+  /** When set and `image` is empty, renders a gradient block instead of a photo. */
+  thumbGradient?: string
   client?: {
     name: string
     avatar?: string
@@ -39,7 +46,8 @@ const defaultWork = {
 export function GlassWorkCard({
   title = defaultWork.title,
   excerpt = defaultWork.excerpt,
-  image = defaultWork.image,
+  image,
+  thumbGradient,
   client = defaultWork.client,
   service = defaultWork.service,
   year = defaultWork.year,
@@ -47,6 +55,12 @@ export function GlassWorkCard({
   href = defaultWork.href,
   className,
 }: GlassWorkCardProps) {
+  const resolvedImage =
+    image !== undefined && image !== null && String(image).trim() !== ""
+      ? String(image).trim()
+      : undefined
+  const useGradient = Boolean(thumbGradient && !resolvedImage)
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -57,11 +71,23 @@ export function GlassWorkCard({
       <Card className="group relative h-full overflow-hidden rounded-2xl border-border/50 bg-card/30 backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10">
         {/* Image Section */}
         <div className="relative aspect-[16/9] overflow-hidden">
-          <motion.img
-            src={image}
-            alt={title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+          {useGradient ? (
+            <motion.div
+              aria-hidden
+              className="flex h-full w-full items-center justify-center transition-transform duration-500 group-hover:scale-110"
+              style={{ background: thumbGradient }}
+            >
+              <span className="select-none text-5xl font-black tracking-tight text-white/[0.15]">
+                {thumbMonogram(title ?? "")}
+              </span>
+            </motion.div>
+          ) : (
+            <motion.img
+              src={resolvedImage !== undefined ? resolvedImage : defaultWork.image}
+              alt={title}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
 
           <div className="absolute bottom-3 left-3 flex gap-2">

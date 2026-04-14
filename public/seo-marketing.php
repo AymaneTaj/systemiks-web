@@ -101,10 +101,10 @@ $pageDesc  = 'Organic growth that compounds. Technical SEO, content strategy, an
           <h2 class="section-intro__heading">Organic growth you can measure</h2>
         </div>
         <div class="stats-grid">
-          <div class="stat-block"><span class="stat-block__value">+124%</span><span class="stat-block__label">Avg organic traffic in 6 months</span></div>
-          <div class="stat-block"><span class="stat-block__value">Top 3</span><span class="stat-block__label">Target keyword positions</span></div>
-          <div class="stat-block"><span class="stat-block__value">3–6mo</span><span class="stat-block__label">Typical result horizon</span></div>
-          <div class="stat-block"><span class="stat-block__value">Monthly</span><span class="stat-block__label">Reporting frequency</span></div>
+          <div class="stat-block"><span class="stat-block__value">90d</span><span class="stat-block__label">Avg. time to first ranking</span></div>
+          <div class="stat-block"><span class="stat-block__value">+140%</span><span class="stat-block__label">Organic traffic growth (CB Legal)</span></div>
+          <div class="stat-block"><span class="stat-block__value">Top 3</span><span class="stat-block__label">Average ranking position achieved</span></div>
+          <div class="stat-block"><span class="stat-block__value">100%</span><span class="stat-block__label">Clients with tracked keyword growth</span></div>
         </div>
       </div>
     </section>
@@ -113,17 +113,8 @@ $pageDesc  = 'Organic growth that compounds. Technical SEO, content strategy, an
       <div class="section__inner">
         <span class="section-intro__eyebrow">Our portfolio</span>
         <h2 class="section-intro__heading" style="max-width:600px; margin: 1rem auto;">See real results for real brands</h2>
-        <p style="color: var(--text-muted); max-width:480px; margin: 0 auto 2rem;">Real projects, real metrics. CB Legal, BabAtlas Car, Zoon Pet, and more.</p>
+        <p style="color: var(--text-muted); max-width:480px; margin: 0 auto 2rem;">Top-3 rankings for local businesses in Laval and Montreal — see how we grew organic traffic for CB Legal (+140%) and beyond.</p>
         <a href="/work.php" class="btn btn--primary">View our work →</a>
-      </div>
-    </section>
-
-    <section class="section--white reveal-on-scroll" style="padding: 3rem 1.5rem; background: var(--light-1);">
-      <div class="section__inner" style="max-width: 700px; text-align:center;">
-        <span class="section-intro__eyebrow">Transparent pricing</span>
-        <h3 style="font-size: var(--text-2xl); margin: 0.75rem 0;">Custom scoped — no generic packages</h3>
-        <p style="color: var(--text-muted); margin: 0 0 1.5rem;">Every project is scoped to your goals. We quote after a discovery call — no guessing, no hidden costs. Book a call and get a clear proposal within 48 hours.</p>
-        <a href="/contact.php" class="btn btn--gold">Get a quote →</a>
       </div>
     </section>
 

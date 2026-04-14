@@ -1,4 +1,4 @@
-name: Deploy to systemiks.tech
+name: Deploy to systemiks.ca
 
 on:
   push:
@@ -11,38 +11,13 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
-      - name: Package site
-        run: |
-          tar czf /tmp/deploy.tar.gz \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='data' \
-            --exclude='CURSOR_*.md' \
-            --exclude='.cursor' \
-            --exclude='ofseek-homepage.html' \
-            --exclude='frontend/node_modules' \
-            --exclude='frontend/src' \
-            --exclude='docs' \
-            .
-
-      - name: Upload to server
-        run: |
-          sshpass -p "${{ secrets.SSH_PASSWORD }}" scp \
-            -P 21098 \
-            -o StrictHostKeyChecking=no \
-            /tmp/deploy.tar.gz \
-            systyvfq@162.254.39.85:~/deploy_systemiks.tar.gz
-
-      - name: Deploy on server
+      - name: Deploy via git pull on server
         run: |
           sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh \
             -p 21098 \
@@ -50,31 +25,27 @@ jobs:
             systyvfq@162.254.39.85 << 'DEPLOY'
           set -e
 
-          # Extract config/ → ~/config/ (above web root, private)
-          tar xzf ~/deploy_systemiks.tar.gz -C "$HOME" \
-            --strip-components=1 \
-            --wildcards './config/*'
+          REPO="https://github.com/AymaneTaj/systemiks-web.git"
+          DEPLOY_PATH="$HOME/systemiks-web"
 
-          # Extract public/* → ~/public_html/ (the web root for systemiks.tech)
-          tar xzf ~/deploy_systemiks.tar.gz -C "$HOME/public_html" \
-            --strip-components=2 \
-            --wildcards './public/*'
+          if [ ! -d "$DEPLOY_PATH/.git" ]; then
+            git clone "$REPO" "$DEPLOY_PATH"
+          else
+            cd "$DEPLOY_PATH"
+            git pull origin main
+          fi
 
-          rm ~/deploy_systemiks.tar.gz
-
-          # Ensure data dir + SQLite exist at ~/data/ (private, above web root)
-          mkdir -p "$HOME/data"
-          touch "$HOME/data/systemiks.sqlite"
-          chmod 664 "$HOME/data/systemiks.sqlite"
-
-          # Remove old systemiks.tech deploy folder if it exists
-          rm -rf "$HOME/systemiks.tech" 2>/dev/null || true
+          # Ensure data dir + SQLite exist (gitignored — never overwritten)
+          mkdir -p "$DEPLOY_PATH/data"
+          touch "$DEPLOY_PATH/data/systemiks.sqlite"
+          chmod 664 "$DEPLOY_PATH/data/systemiks.sqlite"
+          mkdir -p "$DEPLOY_PATH/public/uploads"
 
           echo "Deploy complete: $(date)"
           DEPLOY
 
       - name: Summary
         run: |
-          echo "### Deployed to systemiks.tech" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Deployed to systemiks.ca" >> "$GITHUB_STEP_SUMMARY"
           echo "- **Commit**: \`${GITHUB_SHA::8}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- **Time**: $(date -u '+%Y-%m-%d %H:%M UTC')" >> "$GITHUB_STEP_SUMMARY"

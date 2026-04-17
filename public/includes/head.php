@@ -51,3 +51,18 @@ $noindex     = $noindex     ?? false;
     <!-- Styles -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/embed.css">
+    <!-- Pre-set hero CSS variables so background is dark before React mounts (prevents white flash on mobile) -->
+    <style>
+      body {
+        --gradient-background-start: rgb(10, 10, 10);
+        --gradient-background-end: rgb(108, 0, 82);
+        --first-color: 245, 209, 0;
+        --second-color: 232, 122, 158;
+        --third-color: 240, 160, 80;
+        --fourth-color: 0, 38, 255;
+        --fifth-color: 245, 209, 0;
+        --pointer-color: 255, 255, 255;
+        --size: 80%;
+        --blending-value: hard-light;
+      }
+    </style>

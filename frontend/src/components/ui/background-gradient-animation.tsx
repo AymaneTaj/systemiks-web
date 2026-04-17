@@ -88,9 +88,13 @@ export const BackgroundGradientAnimation = ({
     }
   }
 
-  const [isSafari, setIsSafari] = useState(false)
+  const [useSimpleBlur, setUseSimpleBlur] = useState(false)
   useEffect(() => {
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent))
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    )
+    setUseSimpleBlur(isSafari || isMobile)
   }, [])
 
   return (
@@ -118,7 +122,7 @@ export const BackgroundGradientAnimation = ({
       <div
         className={cn(
           "gradients-container h-full w-full blur-lg",
-          isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
+          useSimpleBlur ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
         )}
       >
         <div

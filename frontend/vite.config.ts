@@ -13,6 +13,7 @@ export default defineConfig({
     },
   },
   build: {
+    cssCodeSplit: false,
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
@@ -21,7 +22,12 @@ export default defineConfig({
       output: {
         entryFileNames: (chunk) => (chunk.name === "embed" ? "assets/embed.js" : "assets/[name]-[hash].js"),
         chunkFileNames: "assets/[name]-[hash].js",
-        assetFileNames: "assets/[name]-[hash][extname]",
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith(".css")) {
+            return "assets/embed.css"
+          }
+          return "assets/[name]-[hash][extname]"
+        },
       },
     },
   },

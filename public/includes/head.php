@@ -50,4 +50,4 @@ $noindex     = $noindex     ?? false;
 
     <!-- Styles -->
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/ConnectSection-CAHSeuFZ.css">
+    <link rel="stylesheet" href="/assets/embed.css">

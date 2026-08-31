@@ -50,3 +50,6 @@ Systemiks/
 ## Apache
 
 VHost for `systemiks.local` points `DocumentRoot` to `Systemiks/public`. Restart Apache after changing vhosts.
+
+
+<!-- Security scan triggered at 2026-08-31 17:20:46 -->
